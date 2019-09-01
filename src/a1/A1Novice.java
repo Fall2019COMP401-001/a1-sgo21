@@ -19,10 +19,10 @@ public class A1Novice {
 						int quantity = scan.nextInt();
 						String itemName = scan.next();
 						double price = scan.nextDouble();
-						mult = price * quantity; 
+						mult += price * quantity; 
 
 						}
-					System.out.println(firstName.charAt(0) + ". " + lastName + ": "  + mult);	
+					System.out.println(firstName.charAt(0) + ". " + lastName + ": "  + String.format("%.2f, mult")); 	
 						
 					}
 			scan.close();	
