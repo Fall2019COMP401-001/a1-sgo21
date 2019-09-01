@@ -22,7 +22,7 @@ public class A1Novice {
 						mult += price * quantity; 
 
 						}
-					System.out.println(firstName.charAt(0) + ". " + lastName + ": "  + String.format("%.2f, mult")); 	
+					System.out.println(firstName.charAt(0) + ". " + lastName + ": "  + String.format("%.2f", mult)); 	
 						
 					}
 			scan.close();	
