@@ -28,10 +28,6 @@ public class A1Novice {
 			scan.close();	
 
 					}
-// quantity array
-// price array
-	// make new array thats multiplied quantity array and price array
-	// use sum function on the multiples array
 	
 	static int calculateSum(double[] price) {	
 		int sum = 0;
