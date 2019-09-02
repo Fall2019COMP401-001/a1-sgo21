@@ -74,18 +74,9 @@ static double findValueMin(double[] vals) {
 		return cur_min;
 	}
 
-	/* findValueMax
-	 * Finds and returns the maximum value in an array of integers
-	 * 
-	 * Input: array of integers values
-	 * 
-	 * Output: maximum value found within the array
-	 * 
-	 * Preconditions:
-	 * Input array must not be null and must contain at least one value.
-	 */
+
 	
-	static double findValueMax(double[] vals) {
+static double findValueMax(double[] vals) {
 		
 		// Initialize current minimum to first value in array.
 		double cur_max = vals[0];
