@@ -1,6 +1,8 @@
 package a1;
 
 import java.util.Scanner;
+import java.util.Arrays;
+import java.util.ArrayList;
 
 public class A1Adept {
 
@@ -41,12 +43,18 @@ public class A1Adept {
 			for (int k=0; k<totalqty; k++) {
 				int eachqty = scan.nextInt();
 				String purchasedItem = scan.next();
+				// compare purchasedItem to each item in itemName array. 
+				// if match, it multiplies that items price w/ quantity 
+				// and totals it up in mult
+				// then stores total for that customer in multarray
 					for (int p=0; p<count; p++) {
 					if (purchasedItem == itemName[p]) {
 						mult += (price[p] * eachqty);
-						} 
+						}
+					
 					multarray[p] = mult; 		
 					}
+				// put multarray in max and min functions
 		System.out.println("Biggest: " + firstName[j] + lastName[j] + findValueMax(multarray));
 		System.out.println("Smallest: " + firstName[j] + lastName[j] +findValueMin(multarray));
 				}
