@@ -1,29 +1,25 @@
 package a1;
 
 import java.util.Scanner;
-import java.util.Arrays;
-import java.util.ArrayList;
 
 public class A1Adept {
 
 	public static void main(String[] args) {
 		
 		Scanner scan = new Scanner(System.in);
-
-		// Your code follows here.
-		
-		// items in store total 
+ 
+		// read total amount of items in store
 		
 		int count  = scan.nextInt();
 		
-		// feed items and prices into arrays
+		// customers amounts, items, and price arrays
 		
+		int [] amountItems = new int[count]; 
 		String [] itemName = new String [count];
 		double[] price = new double [count];
-		for (int i=0; i<(count-1); i++) {
-			System.out.println ("itemName"); 
+		
+		for (int i=0; i<count; i++) {
 			itemName [i] = scan.next(); 
-			System.out.println ("price"); 
 			price [i]= scan.nextDouble(); 
 		}
 	
@@ -31,44 +27,92 @@ public class A1Adept {
 		
 		int customers = scan.nextInt(); 
 		
-		String[] firstName = new String[customers];
-		String[] lastName = new String[customers];
+		int [] custAmount =  new int[customers]; 
+		String[] custName = new String[customers];
+		double [] priceArray =  new double[customers]; 
+		
+		// going through each customer
 
-		for (int j=0; j<(customers-1); j++) {
-			System.out.println ("first name"); 
-			firstName[j] = scan.next();
-			System.out.println ("last name"); 
-			lastName [j] = scan.next(); 
-			System.out.println ("total qty bought by person"); 
-			int totalqty = scan.nextInt();
+		for (int j=0; j<custAmount.length; j++) {
 			
-				double mult = 0;
-				double [] multarray = new double [customers]; 
+			String firstName =  scan.next();
+			String lastName = scan.next();
+			
+			int totalqty = scan.nextInt();
+			int[] totalqtyArray = new int[totalqty]; 
+			
+			double mult = 0;
 				
-				for (int k=0; k<(totalqty-1); k++) {
-				System.out.println ("qty of each item then name of each item"); 
+			for (int n=0; n<totalqtyArray.length; n++) {
 				int eachqty = scan.nextInt();
 				String purchasedItem = scan.next();
-				// compare purchasedItem to each item in itemName array. 
-				// if match, it multiplies that items price w/ quantity 
-				// and totals it up in mult
-				// then stores total for that customer in multarray
-					for (int p=0; p<(count-1); p++) {
-					if (purchasedItem == itemName[p]) {
-						mult += (price[p] * eachqty);
-						}
-					multarray[p] = mult; 		
-					}
-				}
+				
+				// make a static method to match price and item bought
+				
+				double cost = costMethod(purchasedItem, itemName, price);
+				
+				mult += (eachqty * cost); 
+							
+			}
+			custName[j] = firstName + " " + lastName;
+			priceArray[j] = mult; 
 		}
+		
+		scan.close(); 
+		
+		System.out.println("Biggest: " + custName[maxIndex(priceArray)] + " (" + String.format("%.2f",  findValueMax(priceArray)) + ")" ); 
+		System.out.println("Smallest: " + custName[minIndex(priceArray)] + " (" + String.format("%.2f",  findValueMin(priceArray)) + ")" ); 
+		System.out.println("Average: " + String.format("%.2f", (calculateValueSum(priceArray))/(double)customers));
+	}
+
+// static method costMethod that compares purhcasedItem with items in store array and gives the price of that item 
+public static double costMethod(String purchasedItem, String[] itemName, double[] price) {
+	for (int i=0; i<itemName.length; i++) {
+		if (purchasedItem.equals(itemName[i])) {
+			return price[i]; 
+		}
+	}
+	return 0; 
 }
+
+//static method looks thru array of $$ and gives which index of max $$
+public static int maxIndex(double[] priceArray ) {
+	for (int i=0; i<priceArray.length; i++) {
+		if (priceArray [i] == (findValueMax(priceArray))) {
+			return i;
+		}
+	}
+	return 0; 
+}
+
+
+//static method looks thru array of $$ and gives which index of min $$
+public static int minIndex(double[] priceArray ) {
+	for (int i=0; i<priceArray.length; i++) {
+		if (priceArray [i] == (findValueMin(priceArray))) {
+			return i;
+		}
+	}
+	return 0; 
+}
+
+
+
+static double calculateValueSum(double[] vals) {
+	
+	double sum = 0;
+	
+	for (int i=0; i<vals.length; i++) {
+		sum += vals[i];
+	}
+	
+	return sum;
+}
+
+
 static double findValueMin(double[] vals) {
 		
-		// Initialize current minimum to first value in array.
 		double cur_min = vals[0];
-		
-		// Starting with second value (if any), compare each value
-		// in array with current minimum and replace if smaller.
 		
 		for (int i=1; i < vals.length; i++) {
 			if (vals[i] < cur_min) {
@@ -80,14 +124,9 @@ static double findValueMin(double[] vals) {
 	}
 
 
-	
 static double findValueMax(double[] vals) {
 		
-		// Initialize current minimum to first value in array.
 		double cur_max = vals[0];
-		
-		// Starting with second value (if any), compare each value
-		// in array with current minimum and replace if smaller.
 		
 		for (int i=1; i < vals.length; i++) {
 			if (vals[i] > cur_max) {
