@@ -21,7 +21,9 @@ public class A1Adept {
 		String [] itemName = new String [count];
 		double[] price = new double [count];
 		for (int i=0; i<(count-1); i++) {
+			System.out.println ("itemName"); 
 			itemName [i] = scan.next(); 
+			System.out.println ("price"); 
 			price [i]= scan.nextDouble(); 
 		}
 	
@@ -33,15 +35,18 @@ public class A1Adept {
 		String[] lastName = new String[customers];
 
 		for (int j=0; j<(customers-1); j++) {
-			firstName[j] = scan.next(); 
+			System.out.println ("first name"); 
+			firstName[j] = scan.next();
+			System.out.println ("last name"); 
 			lastName [j] = scan.next(); 
+			System.out.println ("total qty bought by person"); 
 			int totalqty = scan.nextInt();
 			
 				double mult = 0;
 				double [] multarray = new double [customers]; 
 				
 				for (int k=0; k<(totalqty-1); k++) {
-					
+				System.out.println ("qty of each item then name of each item"); 
 				int eachqty = scan.nextInt();
 				String purchasedItem = scan.next();
 				// compare purchasedItem to each item in itemName array. 
